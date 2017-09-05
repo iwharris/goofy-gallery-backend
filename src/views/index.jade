@@ -1,0 +1,16 @@
+extends layout
+
+block slackState
+  p #{state}
+
+block slackButton
+  a(href=slack.url)
+    img(
+      alt='Sign in with Slack',
+      width=slack.button.img.width,
+      height: slack.button.img.height,
+      src=slack.button.img.src
+    )
+
+
+

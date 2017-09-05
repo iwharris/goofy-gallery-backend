@@ -1,10 +1,24 @@
 const express = require('express');
+const session = require('express-session');
 const config = require('config');
+const path = require('path');
 
+
+const indexRoutes = require('./routes/index');
 const oauthRoutes = require('./routes/oauth')
 
 const app = express();
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+// Middleware
+app.use(session(config.get('session')));
+
+// app.use(express.static(path.join(__dirname + '/..', 'public')));
+
+app.use('/', indexRoutes);
 app.use('/oauth', oauthRoutes);
 
 // catch 404 and forward to error handler
